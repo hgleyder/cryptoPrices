@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Container, Header, Content, Title, List, ListItem, Thumbnail, Text, Body } from 'native-base';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ componentDidMount(){
 }
 
 getCoinsFromApiAsync =() => {
-    return fetch('https://api.coinmarketcap.com/v1/ticker/?limit=10')
+    return fetch('https://api.coinmarketcap.com/v1/ticker/?limit=40')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({coinsList: responseJson});
@@ -30,15 +31,29 @@ const contentCoins = () =>
 {
  return this.state.coinsList.map(coin =>{
   return (
-    <Text>{coin.symbol}</Text>
+  <ListItem key={coin.symbol} id={coin.symbol}>
+  <Thumbnail square size={80} />
+  <Body>
+  <Text>{coin.symbol}</Text>
+  <Text note>{coin.name}</Text>
+  <Text note>${coin["price_usd"]} USD</Text>
+  </Body>
+  </ListItem>
   );
 });
 }
     return (
-      <View style={styles.container}>
-        {contentCoins()}
-      </View>
-    );
+      <Container>
+        <Header>
+           <Text style={{marginTop: 15, color: 'white', fontSize: 22, fontWeight: '700'}}>Crypto Prices</Text>
+          </Header>
+        <Content>
+          <List>
+            {contentCoins()}
+          </List>
+        </Content>
+      </Container>
+      );
   }
 }
 
