@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "name": "CryptoPrices",
+    "icon": "./cryptoMarket.fw.png",
+    "version": "1.0.0",
+    "slug": "crypto-prices",
+    "sdkVersion": "23.0.0",
+    "ios": {
+      "bundleIdentifier": "com.gleyderh.cryptoprices"
+    },
+    "android": {
+      "package": "com.gleyderh.cryptoprices"
+    }
   }
 }
